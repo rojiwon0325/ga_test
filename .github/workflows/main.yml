@@ -1,0 +1,29 @@
+name: 'Test'
+
+on:
+  workflow_dispatch:
+    
+jobs:            
+  update_gist:
+    permissions: write-all
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+    
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+      
+      - name: Update Gist
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: schneegans/dynamic-badges-action@v1.5.0
+        with:
+          auth: ${{ secrets.GITHUB_TOKEN }}
+          gistID: 3a0a89382b72d637e952daf28d0946e3
+          filename: coverage_badge.json
+          label: coverage
+          message: 0%
+          color: red
+          namedLogo: jest
