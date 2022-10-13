@@ -10,13 +10,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: Download cloc
-        run: sudo apt-get update -y && sudo apt-get install -y cloc
       
       - name: Update Gist
         uses: schneegans/dynamic-badges-action@v1.5.0
         with:
-          auth: ${{ secrets.GITHUB_TOKEN }}
+          auth: ${{ secrets.GIST_SECRET }}
           gistID: 3a0a89382b72d637e952daf28d0946e3
           filename: test.json
           label: coverage
