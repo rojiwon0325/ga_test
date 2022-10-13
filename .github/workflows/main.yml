@@ -6,17 +6,11 @@ on:
 jobs:            
   update_gist:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-    
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
       
       - name: Update Gist
-        if: ${{ github.ref == 'refs/heads/main' }}
         uses: schneegans/dynamic-badges-action@v1.5.0
         with:
           auth: ${{ secrets.GITHUB_TOKEN }}
