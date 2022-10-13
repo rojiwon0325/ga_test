@@ -8,6 +8,10 @@ jobs:
   update_gist:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Download cloc
+        run: sudo apt-get update -y && sudo apt-get install -y cloc
       
       - name: Update Gist
         uses: schneegans/dynamic-badges-action@v1.5.0
